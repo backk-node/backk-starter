@@ -4,12 +4,12 @@ import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/Respo
 import AuditLoggingServiceImpl from './services/auditlogging/AuditLoggingServiceImpl';
 import { mySqlDataStore } from './datastores/mySqlDataStore';
 
-// TODO: Choose your data store here
+// TODO: Choose your data store here, you can only use one kind of data store,
+//  if you don't need a persistent data store, use NoOpDataStore
 const dataStore = mySqlDataStore;
 // const dataStore = postgreSqlDataStore;
 // const dataStore = mongoDbDataStore;
 // const dataStore = new NoOpDataStore();
-
 
 // noinspection JSUnusedLocalSymbols
 export default class MyMicroservice extends Microservice {

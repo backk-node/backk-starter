@@ -38,10 +38,10 @@
     "dayjs": "^1.10.4",
     "ioredis": "^4.19.2",
     "jsonpath-plus": "^5.0.7",
-    "kafkajs": "1.15.0",
+    "kafkajs": "^1.15.0",
     "lodash": "^4.17.21",
-    "mongodb": "3.6.6",
-    "mysql2": "2.2.5",
+    "mongodb": "^3.6.6",
+    "mysql2": "^2.2.5",
     "pg": "^8.0.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.4"
