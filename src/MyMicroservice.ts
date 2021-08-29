@@ -25,7 +25,7 @@ export default class MyMicroservice extends Microservice {
     'roles'
   );
 
-  // TODO: Add your services here
+  // TODO: Create your service(s) classes under services directory and instantiate them here
   // For example:
   // private readonly userAccountService = new UserAccountServiceImpl(dataStore);
 
