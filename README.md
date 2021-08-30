@@ -2,7 +2,7 @@
 
 ## Prerequisites
 1. [Node.js](https://nodejs.org/en/download/) >= 12.19
-2. If you are using a database, you need to install a local instance of the database or have a remote instance available, for example a cloud database
+2. If you are using a database, you need to install a local instance of the database or have a remote instance available, for example a cloud database. For local installations:
    * [Download PostgreSQL](https://www.postgresql.org/download/)
    * [Download MySQL](https://www.mysql.com/downloads/)
    * [Download MariaDB](https://mariadb.org/download/)
