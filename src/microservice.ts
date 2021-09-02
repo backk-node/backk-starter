@@ -1,7 +1,13 @@
-import { DefaultJwtAuthorizationServiceImpl, StartupCheckServiceImpl, Microservice, MySqlDataStore } from 'backk';
-import CaptchaVerifyServiceImpl from './services/captchaverify/CaptchaVerifyServiceImpl';
+import {
+  JwtAuthorizationServiceImpl,
+  Microservice,
+  MySqlDataStore,
+  StartupCheckServiceImpl
+} from 'backk';
+import CaptchaVerificationServiceImpl from './services/captchaverification/CaptchaVerifyServiceImpl';
 import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/ResponseCacheConfigServiceImpl';
 import AuditLoggingServiceImpl from './services/auditlogging/AuditLoggingServiceImpl';
+import LivenessCheckServiceImpl from "./services/livenesscheck/LivenessCheckServiceImpl";
 
 // TODO: Choose your data store here, you can only use one kind of data store,
 //  if you don't need a persistent data store, use NoOpDataStore
@@ -12,11 +18,12 @@ const dataStore = new MySqlDataStore();
 
 // noinspection JSUnusedLocalSymbols
 class MicroserviceImpl extends Microservice {
-  private readonly captchaVerifyService = new CaptchaVerifyServiceImpl();
-  private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
-  private readonly responseCacheConfigService = new ResponseCacheConfigServiceImpl();
   private readonly auditLoggingService = new AuditLoggingServiceImpl();
-  private readonly authorizationService = new DefaultJwtAuthorizationServiceImpl();
+  private readonly authorizationService = new JwtAuthorizationServiceImpl();
+  private readonly captchaVerificationService = new CaptchaVerificationServiceImpl();
+  private readonly livenessCheckService = new LivenessCheckServiceImpl();
+  private readonly responseCacheConfigService = new ResponseCacheConfigServiceImpl();
+  private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
 
   // TODO: Create your service(s) classes under services directory and instantiate them here
   // For example:
