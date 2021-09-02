@@ -1,15 +1,14 @@
 import 'reflect-metadata';
 import {initialize, initializeDefaultJaegerTracing, startHttpServerFor} from 'backk';
-import MyMicroservice from './MyMicroservice';
+import {microservice} from "./microservice";
 
 initializeDefaultJaegerTracing();
 
 async function startMicroservice() {
-  const myMicroservice = new MyMicroservice();
-  await initialize(myMicroservice);
+  await initialize(microservice);
 
   // TODO Start one or more: HTTP server/consumer(s)
-  await startHttpServerFor(myMicroservice);
+  await startHttpServerFor(microservice);
   // await startKafkaConsumerFor(myMicroservice);
   // await startRedisConsumerFor(myMicroservice);
 }

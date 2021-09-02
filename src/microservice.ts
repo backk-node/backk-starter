@@ -3,7 +3,6 @@ import CaptchaVerifyServiceImpl from './services/captchaverify/CaptchaVerifyServ
 import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/ResponseCacheConfigServiceImpl';
 import AuditLoggingServiceImpl from './services/auditlogging/AuditLoggingServiceImpl';
 
-
 // TODO: Choose your data store here, you can only use one kind of data store,
 //  if you don't need a persistent data store, use NoOpDataStore
 const dataStore = new MySqlDataStore();
@@ -12,7 +11,7 @@ const dataStore = new MySqlDataStore();
 // const dataStore = new NoOpDataStore();
 
 // noinspection JSUnusedLocalSymbols
-export default class MyMicroservice extends Microservice {
+class MicroserviceImpl extends Microservice {
   private readonly captchaVerifyService = new CaptchaVerifyServiceImpl();
   private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
   private readonly responseCacheConfigService = new ResponseCacheConfigServiceImpl();
@@ -27,3 +26,5 @@ export default class MyMicroservice extends Microservice {
     super(dataStore);
   }
 }
+
+export const microservice = new MicroserviceImpl();
