@@ -26,8 +26,7 @@ class MicroserviceImpl extends Microservice {
   private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
 
   // TODO: Create your service(s) classes under services directory and instantiate them here
-  // For example:
-  // private readonly userAccountService = new UserAccountServiceImpl(dataStore);
+  private readonly exampleService =
 
   constructor() {
     super(dataStore);

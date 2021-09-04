@@ -82,7 +82,7 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
     npm run start:dev
     ```
    There is one example service in `src/services/example` directory that you can use as a basis for your own service(s).
-   If/When you don't need that example service anymore, just delete the `src/services/example` directory.
+   If/When you don't need that example service anymore, just delete the `src/services/example` directory and remove example service from `MicroserviceImpl` class.
 6. You can test your microservice API using [Postman](https://www.postman.com/downloads/)
    1. Launch Postman
    2. Choose Import and then choose file `postman/<your-microservice-name>_api_postman_collection.json`
