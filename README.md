@@ -13,9 +13,10 @@
 ## Get Started
 Follow the below steps: (In the future, there will be [backk-cli](https://github.com/backk-node/backk-cli) available, which can be used to generate a Backk project based on a set of questions)
 
-1. Clone [Backk starter project](https://github.com/backk-node/backk-starter)
+1. Clone [Backk starter project](https://github.com/backk-node/backk-starter) to a directory named after you microservice
    ```
    git clone git@github.com:backk-node/backk-starter.git <your-microservice-name>
+   cd <your-microservice-name>
    ```
 2. Complete all 3 TODOs in `src/main.ts` and `src/MyMicroservice.ts` files
 3. Check that the environment variable values in the `.env` file are correct for your development environment

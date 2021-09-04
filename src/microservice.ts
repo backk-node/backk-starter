@@ -21,7 +21,7 @@ class MicroserviceImpl extends Microservice {
   private readonly auditLoggingService = new AuditLoggingServiceImpl();
   private readonly authorizationService = new JwtAuthorizationServiceImpl();
   private readonly captchaVerificationService = new CaptchaVerificationServiceImpl();
-  private readonly livenessCheckService = new LivenessCheckServiceImpl();
+  private readonly livenessCheckService = new LivenessCheckServiceImpl(dataStore);
   private readonly responseCacheConfigService = new ResponseCacheConfigServiceImpl();
   private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
 
