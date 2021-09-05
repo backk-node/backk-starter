@@ -1,6 +1,7 @@
 {
-  "watch": ["src"],
-  "ext": "ts",
+  "watch": ["src", "integrationtests", "resources"],
+  "ext": "ts,json,yaml",
   "ignore": ["docs"],
-  "exec": "tsc && node build/main"
+  "exec": "copyfiles resources/* build && tsc && node build/main"
 }
+

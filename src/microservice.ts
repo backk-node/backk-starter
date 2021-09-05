@@ -8,6 +8,7 @@ import CaptchaVerificationServiceImpl from './services/captchaverification/Captc
 import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/ResponseCacheConfigServiceImpl';
 import AuditLoggingServiceImpl from './services/auditlogging/AuditLoggingServiceImpl';
 import LivenessCheckServiceImpl from "./services/livenesscheck/LivenessCheckServiceImpl";
+import ExampleServiceImpl from "./services/example/ExampleServiceImpl";
 
 // TODO: Choose your data store here, you can only use one kind of data store,
 //  if you don't need a persistent data store, use NoOpDataStore
@@ -26,7 +27,7 @@ class MicroserviceImpl extends Microservice {
   private readonly startupCheckService = new StartupCheckServiceImpl(dataStore);
 
   // TODO: Create your service(s) classes under services directory and instantiate them here
-  private readonly exampleService =
+  private readonly exampleService = new ExampleServiceImpl(dataStore);
 
   constructor() {
     super(dataStore);
