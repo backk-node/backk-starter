@@ -34,7 +34,7 @@ services:
       - "${MONGODB_PORT}:27017"
 #  mysql:
 #    container_name: mysql
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: mysql:latest
 #    command: --default-authentication-plugin=mysql_native_password
 #    restart: always
@@ -44,7 +44,7 @@ services:
 #      - "${MYSQL_PORT}:3306"
 #  mariadb:
 #    container_name: mariadb
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: mariadb: latest
 #    restart: always
 #    environment:
@@ -53,7 +53,7 @@ services:
 #      - "${MYSQL_PORT}:3306"
 #  postgresql:
 #    container_name: postgres
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: postgres:latest
 #    restart: always
 #    environment:
@@ -62,14 +62,14 @@ services:
 #      - "${POSTGRESQL_PORT}:5432"
 #  zookeeper:
 #    container_name: zookeeper
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: wurstmeister/zookeeper: latest
 #    restart: always
 #    ports:
 #      - "${ZOOKEEPER_PORT}:2181"
 #  kafka:
 #    container_name: kafka
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: wurstmeister/kafka:latest
 #    restart: always
 #    ports:
@@ -82,7 +82,7 @@ services:
 #      - /var/run/docker.sock:/var/run/docker.sock
 #  redis:
 #    container_name: redis
-#    # TODO: Replace 'latest' with version you need
+#    # TODO: Replace 'latest' with the version you need
 #    image: redis:latest
 #    restart: always
 #    ports:
@@ -119,3 +119,5 @@ services:
 #      - zookeeper
 #      - kafka
 #      - redis
+#
+# # TODO: Add here more dependent microservices if needed
