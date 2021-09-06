@@ -1,7 +1,7 @@
 version: "3"
 services:
   microservice:
-    container_name: backk-example-project
+    container_name: my-microservice
     restart: always
     build: .
     env_file:
@@ -9,11 +9,20 @@ services:
     ports:
       - "${PORT}:${PORT}"
     links:
-# TODO: choose your data store
+      # TODO: choose your data store
       - mongodb
-#      - postgresql
-#      - mysql
-#      - mariadb
+  #      - postgresql
+  #      - mysql
+  #      - mariadb
+  # TODO: Enable Kafka (and Zookeeper) if needed
+  #      - zookeeper
+  #      - kafka
+  # TODO: Enable Redis if needed
+  #      - redis
+  # TODO: Rename and enable dependent other microservice(s)
+  #      - dependent_microservice_1
+  #      - dependent_microservice_2
+  #        ...
   mongodb:
     container_name: mongodb
     image: mongo
@@ -22,29 +31,91 @@ services:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGODB_PASSWORD}
     ports:
-      - "${MONGODB_PORT}:${MONGODB_PORT}"
+      - "${MONGODB_PORT}:27017"
 #  mysql:
 #    container_name: mysql
-#    image: mysql
+#    # TODO: Replace 'latest' with version you need
+#    image: mysql:latest
 #    command: --default-authentication-plugin=mysql_native_password
 #    restart: always
 #    environment:
 #       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 #    ports:
-#      - "${MYSQL_PORT}:${MYSQL_PORT}"
+#      - "${MYSQL_PORT}:3306"
 #  mariadb:
 #    container_name: mariadb
-#    image: mariadb
+#    # TODO: Replace 'latest' with version you need
+#    image: mariadb: latest
 #    restart: always
 #    environment:
 #       MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
 #    ports:
-#      - "${MYSQL_PORT}:${MYSQL_PORT}"
+#      - "${MYSQL_PORT}:3306"
 #  postgresql:
 #    container_name: postgres
-#    image: postgres
+#    # TODO: Replace 'latest' with version you need
+#    image: postgres:latest
 #    restart: always
 #    environment:
 #       POSTGRES_PASSWORD: ${POSTGRESQL_PASSWORD}
 #    ports:
-#      - "${POSTGRESQL_PORT}:${POSTGRESQL_PORT}"
+#      - "${POSTGRESQL_PORT}:5432"
+#  zookeeper:
+#    container_name: zookeeper
+#    # TODO: Replace 'latest' with version you need
+#    image: wurstmeister/zookeeper: latest
+#    restart: always
+#    ports:
+#      - "${ZOOKEEPER_PORT}:2181"
+#  kafka:
+#    container_name: kafka
+#    # TODO: Replace 'latest' with version you need
+#    image: wurstmeister/kafka:latest
+#    restart: always
+#    ports:
+#      - "${KAFKA_PORT}":"9092"
+#    environment:
+#      DOCKER_API_VERSION: 1.22
+#      KAFKA_ADVERTISED_HOST_NAME: localhost
+#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:${ZOOKEEPER_PORT}
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#  redis:
+#    container_name: redis
+#    # TODO: Replace 'latest' with version you need
+#    image: redis:latest
+#    restart: always
+#    ports:
+#      - "${REDIS_PORT}:6379"
+#  dependent_microservice_1:
+#    container_name: dependent_microservice_1
+#    image: dependent_microservice_1
+#    restart: always
+#    # TODO: define port mapping
+#    ports:
+#      - ":"
+#    links:
+#      # TODO: enable needed links
+#      - mongodb
+#      - postgresql
+#      - mysql
+#      - mariadb
+#      - zookeeper
+#      - kafka
+#      - redis
+#  dependent_microservice_2:
+#    container_name: dependent_microservice_2
+#    image: dependent_microservice_2
+#    restart: always
+#    # TODO: define port mapping
+#    ports:
+#      - ":"
+#    links:
+#      # TODO: enable needed links
+#      - mongodb
+#      - postgresql
+#      - mysql
+#      - mariadb
+#      - zookeeper
+#      - kafka
+#      - redis
