@@ -25,7 +25,8 @@ services:
   #        ...
   mongodb:
     container_name: mongodb
-    image: mongo
+    # TODO: Replace 'latest' with the version you need
+    image: mongo:latest
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGODB_USER}

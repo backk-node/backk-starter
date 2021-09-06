@@ -3,7 +3,7 @@
 ## Prerequisites
 1. [Node.js](https://nodejs.org/en/download/) >= 12.19
 2. If your microservice is using a database, you need to install a local instance of the database or have a remote instance available, for example a cloud database.
-   You can also run database in a container. For running a container in Mac or Windows, you need to install [Docker Desktop](https://www.docker.com/products/docker-desktop). For local installations:
+   You can also run database in a container. For running a container in Mac or Windows, you need to install [Docker Desktop](https://www.docker.com/products/docker-desktop). You can use same database installation for developing multiple Backk microservices. For local database installations:
    - [Download and install PostgreSQL](https://www.postgresql.org/download/) or [run PostgreSQL in a container](https://hub.docker.com/_/postgres)
    - [Download and install MySQL](https://www.mysql.com/downloads/) or [run MySQL in a container](https://hub.docker.com/_/mysql)
    - [Download and install MariaDB](https://mariadb.org/download/) or [run MariaDB in a container](https://hub.docker.com/_/mariadb)
@@ -11,6 +11,11 @@
    - [Download and install Vitess](https://vitess.io/docs/get-started/local/) or [run Vitess in a container](https://vitess.io/docs/get-started/local-docker)
    - [Download and install CockroachDB](https://www.cockroachlabs.com/docs/stable/install-cockroachdb.html) or [run CockroachDB in a container](https://hub.docker.com/r/cockroachdb/cockroach)
    - [Download and install YugabyteDB](https://download.yugabyte.com/) or [run YugabyteDB in a container](https://hub.docker.com/r/yugabytedb/yugabyte)
+3. If your microservice uses Kafka, you need to install a local instance of Kafka or have a remote instance available, for example in cloud.
+    - [Download and install Kafka](https://kafka.apache.org/downloads) or [run Kafka in a container](https://hub.docker.com/r/wurstmeister/kafka)
+4. If your microservice uses Redis (as message queue and/or response cache), you need to install a local instance of Redis or have a remote instance available, for example in cloud.
+    - [Download and install Redis](https://redis.io/download) or [run Redis in a container](https://hub.docker.com/_/redis)
+
 
 ## Get Started
 - [Development environment](#development-environment)
@@ -49,8 +54,12 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
       * `POSTGRESQL_PASSWORD`
    * If you are using Kafka, check
       * `KAFKA_SERVER`
-   * if you are using Redis, check
-      * `REDIS_SERVER`
+   * if you are using Redis as a message queue, check
+      * `REDIS_HOST`
+      * `REDIS_PORT`
+   - if you are using Redis as a response cache, check
+     - `REDIS_CACHE_HOST`
+     - `REDIS_CACHE_PORT`
 4. OPTIONAL STEP: Remove unnecessary dependencies from `package.json` file
    * If you are using MongoDB, remove following lines:
      ```
