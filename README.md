@@ -53,7 +53,8 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
       * `POSTGRESQL_USER`
       * `POSTGRESQL_PASSWORD`
    * If you are using Kafka, check
-      * `KAFKA_SERVER`
+      * `KAFKA_HOST`
+      * `KAFKA_PORT`
    * if you are using Redis as a message queue, check
       * `REDIS_HOST`
       * `REDIS_PORT`

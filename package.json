@@ -19,7 +19,9 @@
     "test": "env-cmd -f .env.dev jest",
     "test:watch": "env-cmd -f .env.dev jest --watch",
     "test:cov": "env-cmd -f .env.dev jest --coverage",
-    "test:debug": "env-cmd -f .env.dev --use-shell node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand"
+    "test:debug": "env-cmd -f .env.dev --use-shell node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "integrationtest:dev": "env-cmd -f .env.dev newman run postman/integration_tests_collection.json",
+    "integrationtest:ci": "runIntegrationTestsInCi.sh"
   },
   "dependencies": {
     "@opentelemetry/exporter-jaeger": "0.12.0",
@@ -34,7 +36,7 @@
     "@opentelemetry/plugin-mysql": "0.11.0",
     "@opentelemetry/plugin-pg": "0.11.0",
     "@opentelemetry/plugin-pg-pool": "0.11.0",
-    "backk": "^1.0.0-alpha.131",
+    "backk": "^1.0.0-alpha.144",
     "dayjs": "^1.10.4",
     "ioredis": "^4.19.2",
     "jsonpath-plus": "^5.0.7",
@@ -62,6 +64,7 @@
     "eslint-config-prettier": "^6.7.0",
     "eslint-plugin-import": "^2.19.1",
     "jest": "^24.9.0",
+    "newman": "^5.2.4",
     "nodemon": "^2.0.12",
     "prettier": "^1.18.2",
     "rimraf": "^3.0.0",

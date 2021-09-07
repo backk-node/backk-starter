@@ -7,7 +7,7 @@ services:
     env_file:
       - .env.ci
     ports:
-      - "${PORT}:${PORT}"
+      - "${HTTP_SERVER_PORT}:${HTTP_SERVER_PORT}"
     links:
       # TODO: choose your data store
       - mongodb
