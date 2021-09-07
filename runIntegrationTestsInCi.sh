@@ -1,3 +1,3 @@
-docker-compose up
+docker-compose --env-file env.ci up
 newman run postman/integration-tests-collection.json
-docker-compose down
+docker-compose --env-file env.ci down
