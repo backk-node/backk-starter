@@ -3,59 +3,67 @@ kind: Deployment
 metadata:
   name: {{ include "my-microservice.fullname" . }}
   labels:
-    {{- include "my-microservice.labels" . | nindent 4 }}
+  {{- include "my-microservice.labels" . | nindent 4 }}
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
+  {{- if not .Values.environmentType "production" }}
+  replicas: 1
   {{- end }}
   selector:
     matchLabels:
       {{- include "my-microservice.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
+      {{- with .Values.deployment.pod.annotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
         {{- include "my-microservice.selectorLabels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.deployment.pod.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "my-microservice.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.deployment.pod.securityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          image: "{{ .Values.deployment.pod.container.image.registry }}{{ .Values.deployment.pod.container.image.repository }}:{{ .Values.deployment.pod.container.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.deployment.pod.container.imagePullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 8080
               protocol: TCP
           livenessProbe:
             httpGet:
-              path: /
+              path: /livenessCheckService.isMicroserviceAlive
               port: http
           readinessProbe:
             httpGet:
-              path: /
+              path: /readinessCheckService.isMicroserviceReady
+              port: http
+          startupProbe:
+            httpGet:
+              path: /startupCheckService.isMicroserviceStarted
               port: http
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
+          {{- if eq .Values.environmentType "development" }}
+            {{- toYaml .Values.deployment.pod.container.resources.development | nindent 12 }}
+          {{- else if eq .Values.environmentType "integration"  }}
+            {{- toYaml .Values.deployment.pod.container.resources.integration | nindent 12 }}
+          {{- else }}
+            {{- toYaml .Values.deployment.pod.container.resources.production | nindent 12 }}
+          {{- end}}
+      {{- with .Values.deployment.pod.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.deployment.pod.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.deployment.pod.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
