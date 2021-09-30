@@ -103,3 +103,4 @@ docs/
 postman/
 .idea/
 build/
+openapi/
