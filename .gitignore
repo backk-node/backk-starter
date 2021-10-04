@@ -101,5 +101,6 @@ dist
 
 .idea/
 build/
-generated/
+generated/integrationtests/
+generated/docs/
 

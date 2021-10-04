@@ -9,13 +9,15 @@
     "prebuild": "rimraf build && copyfiles resources/* build",
     "generateTypes": "node node_modules/backk/lib/typescript/generator/generateTypescriptFilesFromTypeDefinitionFiles.js",
     "generateDoc": "node node_modules/backk/lib/documentation/generateServicesDocumentation.js",
+    "generateApiSpecs": "env-cmd -f .env.dev node build/main --generateApiSpecsOnly | dev-null",
     "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "format": "prettier --write \"src/**/*.ts\"",
     "prestart": "copyfiles resources/*",
     "start:dev": "env-cmd -f .env.dev nodemon",
     "start:debug": "env-cmd -f .env.dev nodemon --inspect",
-    "start:prod": "node build/main",
-    "lint": "eslint \"{src,test}/**/*.ts\" --fix --cache",
+    "start:ci": "env-cmd -f .env.ci nodemon --inspect",
+    "start:prod": "env-cmd -f .env.prod node build/main",
+    "lint": "eslint \"src/**/*.ts\" --fix --cache",
     "test": "env-cmd -f .env.dev jest",
     "test:watch": "env-cmd -f .env.dev jest --watch",
     "test:cov": "env-cmd -f .env.dev jest --coverage",
@@ -37,7 +39,7 @@
     "@opentelemetry/plugin-mysql": "0.11.0",
     "@opentelemetry/plugin-pg": "0.11.0",
     "@opentelemetry/plugin-pg-pool": "0.11.0",
-    "backk": "^1.0.0-alpha.201",
+    "backk": "^1.0.0-alpha.213",
     "dayjs": "^1.10.4",
     "ioredis": "^4.19.2",
     "jsonpath-plus": "^5.0.7",
@@ -60,6 +62,7 @@
     "@typescript-eslint/eslint-plugin": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
     "copyfiles": "^2.4.1",
+    "dev-null-cli": "^1.0.0",
     "env-cmd": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-config-prettier": "^6.7.0",
@@ -93,6 +96,11 @@
     "testEnvironment": "node"
   },
   "lint-staged": {
-    "*.ts": ["npm run lint", "npm run format"]
+    "*.ts": [
+      "npm run generateApiSpecs",
+      "npm run lint",
+      "npm run format",
+      "npm test"
+    ]
   }
 }
