@@ -1,0 +1,9 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# shellcheck disable=SC2039
+if [[ -f .husky/VERSION_LEVEL ]]; then
+  VERSION_LEVEL=$(cat .husky/VERSION_LEVEL)
+  npm version $VERSION_LEVEL
+fi
+

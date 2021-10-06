@@ -3,6 +3,7 @@
 
 COMMIT_MSG=$(cat "$1")
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
+VERSION_REGEXP="^[0-9][0-9]*\.[0-9][0-9]*\.[0-9][0-9]*$"
 
 # shellcheck disable=SC2039
 if [[ $BRANCH == main ]] || [[ $BRANCH == master ]]; then
@@ -12,15 +13,13 @@ if [[ $BRANCH == main ]] || [[ $BRANCH == master ]]; then
      VERSION_LEVEL="minor"
   elif [[ $COMMIT_MSG == MAJOR:* ]]; then
     VERSION_LEVEL="minor"
-  elif [[ $COMMIT_MSG == MAJOR:* ]]; then
-      VERSION_LEVEL="minor"
-  elif [[ $COMMIT_MSG == INTERNAL:* ]]; then
-      exit 0
+  elif [[ $COMMIT_MSG =~ $VERSION_REGEXP ]]; then
+    rm -f .husky/VERSION_LEVEL
+    exit 0
   else
     echo "ERROR: Commit message must start with either 'PATCH:', 'MINOR:' or 'MAJOR:'"
     exit 1
   fi
 
-  VERSION=$(npm --no-git-tag-version version $VERSION_LEVEL)
-  git tag "$VERSION"
+  echo $VERSION_LEVEL > .husky/VERSION_LEVEL
 fi
