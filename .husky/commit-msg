@@ -16,6 +16,8 @@ if [[ $BRANCH == main ]] || [[ $BRANCH == master ]]; then
   elif [[ $COMMIT_MSG =~ $VERSION_REGEXP ]]; then
     rm -f .husky/VERSION_LEVEL
     exit 0
+  elif [[ $COMMIT_MSG == INTERNAL:* ]]; then
+    exit 0
   else
     echo "ERROR: Commit message must start with either 'PATCH:', 'MINOR:' or 'MAJOR:'"
     exit 1
