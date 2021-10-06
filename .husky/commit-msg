@@ -12,6 +12,10 @@ if [[ $BRANCH == main ]] || [[ $BRANCH == master ]]; then
      VERSION_LEVEL="minor"
   elif [[ $COMMIT_MSG == MAJOR:* ]]; then
     VERSION_LEVEL="minor"
+  elif [[ $COMMIT_MSG == MAJOR:* ]]; then
+      VERSION_LEVEL="minor"
+  elif [[ $COMMIT_MSG == INTERNAL:* ]]; then
+      exit 0
   else
     echo "ERROR: Commit message must start with either 'PATCH:', 'MINOR:' or 'MAJOR:'"
     exit 1
