@@ -1,0 +1,22 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+COMMIT_MSG=$(cat "$1")
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# shellcheck disable=SC2039
+if [[ $BRANCH == main ]] || [[ $BRANCH == master ]]; then
+  if [[ $COMMIT_MSG == PATCH:* ]]; then
+    VERSION_LEVEL="patch"
+  elif [[ $COMMIT_MSG == MINOR:* ]]; then
+     VERSION_LEVEL="minor"
+  elif [[ $COMMIT_MSG == MAJOR:* ]]; then
+    VERSION_LEVEL="minor"
+  else
+    echo "ERROR: Commit message must start with either 'PATCH:', 'MINOR:' or 'MAJOR:'"
+    exit 1
+  fi
+
+  VERSION=$(npm --no-git-tag-version version $VERSION_LEVEL)
+  git tag "$VERSION"
+fi
