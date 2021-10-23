@@ -1,17 +1,16 @@
 import 'reflect-metadata';
-import {initialize, initializeDefaultJaegerTracing, startHttpServerFor} from 'backk';
-import {microservice} from "./microservice";
+import { initializeDefaultJaegerTracing } from 'backk';
+import microservice from './microservice';
 
 initializeDefaultJaegerTracing();
 
 async function startMicroservice() {
-  await initialize(microservice);
+  await microservice.initialize();
 
   // TODO Start one or more: HTTP server/consumer(s)
-  await startHttpServerFor(microservice);
-  // await startKafkaConsumerFor(myMicroservice);
-  // await startRedisConsumerFor(myMicroservice);
+  await microservice.startHttpServer();
+  // await microservice.startKafkaConsumer();
+  // await microservice.startRedisConsumer();
 }
 // noinspection JSIgnoredPromiseFromCall
 startMicroservice();
-

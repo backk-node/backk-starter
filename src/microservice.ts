@@ -1,14 +1,9 @@
-import {
-  JwtAuthorizationServiceImpl,
-  Microservice,
-  MySqlDataStore,
-  StartupCheckServiceImpl
-} from 'backk';
+import { JwtAuthorizationServiceImpl, Microservice, MySqlDataStore, StartupCheckServiceImpl } from 'backk';
 import CaptchaVerificationServiceImpl from './services/captchaverification/CaptchaVerifyServiceImpl';
 import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/ResponseCacheConfigServiceImpl';
 import AuditLoggingServiceImpl from './services/auditlogging/AuditLoggingServiceImpl';
-import LivenessCheckServiceImpl from "./services/livenesscheck/LivenessCheckServiceImpl";
-import ExampleServiceImpl from "./services/example/ExampleServiceImpl";
+import LivenessCheckServiceImpl from './services/livenesscheck/LivenessCheckServiceImpl';
+import ExampleServiceImpl from './services/example/ExampleServiceImpl';
 
 // TODO: Choose your data store here, you can only use one kind of data store,
 //  if you don't need a persistent data store, use NoOpDataStore
@@ -34,4 +29,5 @@ class MicroserviceImpl extends Microservice {
   }
 }
 
-export const microservice = new MicroserviceImpl();
+const microservice = new MicroserviceImpl();
+export default microservice;
