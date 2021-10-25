@@ -4,6 +4,7 @@
 # shellcheck disable=SC2039
 if [[ -f .husky/VERSION_LEVEL ]]; then
   VERSION_LEVEL=$(cat .husky/VERSION_LEVEL)
-  npm version $VERSION_LEVEL
+  NEW_VERSION=$(npm version $VERSION_LEVEL)
+  git push origin $NEW_VERSION
 fi
 
