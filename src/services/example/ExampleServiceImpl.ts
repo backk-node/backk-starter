@@ -1,7 +1,15 @@
-import {_Id, AbstractDataStore, AllowForEveryUser, Many, One, PostQueryOperations, PromiseErrorOr} from 'backk';
+import {
+  _Id,
+  AbstractDataStore,
+  AllowForEveryUser,
+  Many,
+  One,
+  PostQueryOperations,
+  PromiseErrorOr
+} from 'backk';
 import ExampleService from './ExampleService';
 import ExampleEntity from './entities/ExampleEntity';
-import {exampleServiceErrors} from "./errors/shoppingCartServiceErrors";
+import { exampleServiceErrors } from './errors/shoppingCartServiceErrors';
 
 export default class ExampleServiceImpl extends ExampleService {
   constructor(dataStore: AbstractDataStore) {
@@ -34,7 +42,7 @@ export default class ExampleServiceImpl extends ExampleService {
   }
 
   @AllowForEveryUser()
-  deleteExampleEntity({ _id }: _Id):  PromiseErrorOr<null> {
+  deleteExampleEntity({ _id }: _Id): PromiseErrorOr<null> {
     this.dataStore.deleteEntityById(ExampleEntity, _id);
   }
 }

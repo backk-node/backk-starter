@@ -1,4 +1,4 @@
-import {CrudEntityService, _Id, Many, One, PostQueryOperations, PromiseErrorOr} from 'backk';
+import { CrudEntityService, _Id, Many, One, PostQueryOperations, PromiseErrorOr } from 'backk';
 import ExampleEntity from './entities/ExampleEntity';
 
 export default abstract class ExampleService extends CrudEntityService {
