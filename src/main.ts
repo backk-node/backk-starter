@@ -1,16 +1,13 @@
+// organize-imports-ignore
 import 'reflect-metadata';
-import { initializeDefaultJaegerTracing } from 'backk';
+import { HttpServer, initializeDefaultJaegerTracing } from 'backk';
 import microservice from './microservice';
 
 initializeDefaultJaegerTracing();
 
-async function startMicroservice() {
-  await microservice.initialize();
-
-  // TODO Start one or more: HTTP server/consumer(s)
-  microservice.startHttpServer();
-  // microservice.startKafkaConsumer();
-  // microservice.startRedisConsumer();
-}
-// noinspection JSIgnoredPromiseFromCall
-startMicroservice();
+microservice.initialize(process.argv, [
+  // Enable HTTP server and/or consumer(s)
+  new HttpServer(),
+  // new KafkaConsumer(),
+  // new RedisConsumer()
+]);

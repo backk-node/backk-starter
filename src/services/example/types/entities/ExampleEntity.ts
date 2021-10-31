@@ -1,4 +1,4 @@
-import { MaxLength, _Id, Entity, IsAnyString, Lengths, NotUnique, ReadWrite } from 'backk';
+import { Entity, IsAnyString, Lengths, MaxLength, NotUnique, ReadWrite, _Id } from 'backk';
 
 @Entity()
 export default class ExampleEntity extends _Id {

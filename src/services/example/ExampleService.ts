@@ -1,11 +1,11 @@
-import { CrudEntityService, _Id, Many, One, PostQueryOperations, PromiseErrorOr } from 'backk';
-import ExampleEntity from './entities/ExampleEntity';
+import { Many, One, PostQueryOperations, PromiseErrorOr, Service, _Id } from 'backk';
+import ExampleEntity from './types/entities/ExampleEntity';
 
-export default abstract class ExampleService extends CrudEntityService {
-  abstract deleteAllExampleEntities(): PromiseErrorOr<null>;
-  abstract createExampleEntity(arg: ExampleEntity): PromiseErrorOr<One<ExampleEntity>>;
-  abstract getExampleEntities(arg: PostQueryOperations): PromiseErrorOr<Many<ExampleEntity>>;
-  abstract getExampleEntity(arg: _Id): PromiseErrorOr<One<ExampleEntity>>;
-  abstract updateExampleEntity(arg: ExampleEntity): PromiseErrorOr<null>;
-  abstract deleteExampleEntity(arg: _Id): PromiseErrorOr<null>;
+export interface ExampleService extends Service {
+  deleteAllExampleEntities(): PromiseErrorOr<null>;
+  createExampleEntity(arg: ExampleEntity): PromiseErrorOr<One<ExampleEntity>>;
+  getExampleEntities(arg: PostQueryOperations): PromiseErrorOr<Many<ExampleEntity>>;
+  getExampleEntity(arg: _Id): PromiseErrorOr<One<ExampleEntity>>;
+  updateExampleEntity(arg: ExampleEntity): PromiseErrorOr<null>;
+  deleteExampleEntity(arg: _Id): PromiseErrorOr<null>;
 }
