@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-FROM node:14
+FROM node:12.19
 
 RUN groupadd -g 2000 microservice && \
     useradd -u 1000 -g microservice -s /bin/bash microservice-user
