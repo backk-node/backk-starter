@@ -12,6 +12,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    openId: null
   schemas:
     BackkError:
       type: object
@@ -40,7 +41,7 @@ components:
       required:
         - _id
         - exampleProperty
-    DefaultPostQueryOperations:
+    DefaultPostQueryOperationsImpl:
       type: object
       properties:
         includeResponseFields:
@@ -175,25 +176,25 @@ paths:
         "200":
           description: Successful operation
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a1
-                errorCode: "17"
+                errorCode: error.17
                 message: User is not authenticated
                 statusCode: 401
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a2
-                errorCode: "6"
+                errorCode: error.6
                 message: Service function call not authorized
                 statusCode: 403
   /exampleService.createExampleEntity:
@@ -221,71 +222,72 @@ paths:
                 _id: "{{exampleId}}"
                 exampleProperty: abc
         "400":
-          description: "5: Invalid argument: "
+          description: "error.5: Invalid argument: "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a3
-                errorCode: "5"
+                errorCode: error.5
                 message: "Invalid argument: "
                 statusCode: 400
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a1
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a2
         "406":
-          description: "10: Missing service function argument"
+          description: "error.10: Missing service function argument"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a4
-                errorCode: "10"
+                errorCode: error.10
                 message: Missing service function argument
                 statusCode: 406
         "409":
-          description: "3: Duplicate entity"
+          description: "error.3: Duplicate entity"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
-                errorCode: "3"
+                errorCode: error.3
                 message: Duplicate entity
                 statusCode: 409
         "413":
-          description: "16: Request is too long"
+          description: "error.16: Request is too long"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a5
-                errorCode: "16"
+                errorCode: error.16
                 message: Request is too long
                 statusCode: 413
         "422":
-          description: "7: Maximum sub-entity count reached. Cannot add new sub-entity"
+          description: "error.7: Maximum sub-entity count reached. Cannot add new
+            sub-entity"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a6
-                errorCode: "7"
+                errorCode: error.7
                 message: Maximum sub-entity count reached. Cannot add new sub-entity
                 statusCode: 422
   /exampleService.getExampleEntities:
@@ -294,12 +296,12 @@ paths:
       tags:
         - exampleService
       requestBody:
-        description: DefaultPostQueryOperations
+        description: DefaultPostQueryOperationsImpl
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/DefaultPostQueryOperations"
+              $ref: "#/components/schemas/DefaultPostQueryOperationsImpl"
             example:
               includeResponseFields: []
               excludeResponseFields: []
@@ -328,53 +330,54 @@ paths:
                 _id: "{{exampleId}}"
                 exampleProperty: abc
         "400":
-          description: "5: Invalid argument: "
+          description: "error.5: Invalid argument: "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a3
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a1
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a2
         "404":
-          description: "4: Entity not found"
+          description: "error.4: Entity not found"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
                 &a7
-                errorCode: "4"
+                errorCode: error.4
                 message: Entity not found
                 statusCode: 404
         "406":
-          description: "10: Missing service function argument"
+          description: "error.10: Missing service function argument"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a4
         "413":
-          description: "16: Request is too long"
+          description: "error.16: Request is too long"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a5
         "422":
-          description: "7: Maximum sub-entity count reached. Cannot add new sub-entity"
+          description: "error.7: Maximum sub-entity count reached. Cannot add new
+            sub-entity"
           content:
             application/json:
               schema:
@@ -405,49 +408,50 @@ paths:
                 _id: "{{exampleId}}"
                 exampleProperty: abc
         "400":
-          description: "5: Invalid argument: "
+          description: "error.5: Invalid argument: "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a3
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a1
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a2
         "404":
-          description: "4: Entity not found"
+          description: "error.4: Entity not found"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a7
         "406":
-          description: "10: Missing service function argument"
+          description: "error.10: Missing service function argument"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a4
         "413":
-          description: "16: Request is too long"
+          description: "error.16: Request is too long"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a5
         "422":
-          description: "7: Maximum sub-entity count reached. Cannot add new sub-entity"
+          description: "error.7: Maximum sub-entity count reached. Cannot add new
+            sub-entity"
           content:
             application/json:
               schema:
@@ -472,35 +476,35 @@ paths:
         "200":
           description: Successful operation
         "400":
-          description: "5: Invalid argument: "
+          description: "error.5: Invalid argument: "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a3
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a1
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a2
         "404":
-          description: "4: Entity not found"
+          description: "error.4: Entity not found"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a7
         "406":
-          description: "10: Missing service function argument"
+          description: "error.10: Missing service function argument"
           content:
             application/json:
               schema:
@@ -515,19 +519,20 @@ paths:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example:
-                errorCode: "1"
+                errorCode: error.1
                 message: Entity version conflict. Entity was updated before this request, please
                   re-fetch the entity and try update again
                 statusCode: 409
         "413":
-          description: "16: Request is too long"
+          description: "error.16: Request is too long"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a5
         "422":
-          description: "7: Maximum sub-entity count reached. Cannot add new sub-entity"
+          description: "error.7: Maximum sub-entity count reached. Cannot add new
+            sub-entity"
           content:
             application/json:
               schema:
@@ -551,42 +556,43 @@ paths:
         "200":
           description: Successful operation
         "400":
-          description: "5: Invalid argument: "
+          description: "error.5: Invalid argument: "
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a3
         "401":
-          description: "17: User is not authenticated"
+          description: "error.17: User is not authenticated"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a1
         "403":
-          description: "6: Service function call not authorized"
+          description: "error.6: Service function call not authorized"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a2
         "406":
-          description: "10: Missing service function argument"
+          description: "error.10: Missing service function argument"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a4
         "413":
-          description: "16: Request is too long"
+          description: "error.16: Request is too long"
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/BackkError"
               example: *a5
         "422":
-          description: "7: Maximum sub-entity count reached. Cannot add new sub-entity"
+          description: "error.7: Maximum sub-entity count reached. Cannot add new
+            sub-entity"
           content:
             application/json:
               schema:

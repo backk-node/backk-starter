@@ -12,6 +12,7 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    openId: null
   schemas: {}
 security:
   - bearerAuth: []

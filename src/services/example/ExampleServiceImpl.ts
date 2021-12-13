@@ -2,14 +2,14 @@ import {
   AllowForEveryUser,
   CrudEntityService,
   DataStore,
-  DefaultPostQueryOperations,
+  DefaultPostQueryOperationsImpl,
   Many,
   NoCaptcha,
   One,
   PromiseErrorOr,
   _Id,
 } from 'backk';
-import { exampleServiceErrors } from './errors/shoppingCartServiceErrors';
+import { exampleServiceErrors } from './errors/exampleServiceErrors';
 import { ExampleService } from './ExampleService';
 import ExampleEntity from './types/entities/ExampleEntity';
 
@@ -30,13 +30,15 @@ export default class ExampleServiceImpl extends CrudEntityService implements Exa
   }
 
   @AllowForEveryUser()
-  getExampleEntities(postQueryOperations: DefaultPostQueryOperations): PromiseErrorOr<Many<ExampleEntity>> {
+  getExampleEntities(
+    postQueryOperations: DefaultPostQueryOperationsImpl
+  ): PromiseErrorOr<Many<ExampleEntity>> {
     return this.dataStore.getAllEntities(ExampleEntity, postQueryOperations, false);
   }
 
   @AllowForEveryUser()
   getExampleEntity({ _id }: _Id): PromiseErrorOr<One<ExampleEntity>> {
-    return this.dataStore.getEntityById(ExampleEntity, _id, new DefaultPostQueryOperations(), true);
+    return this.dataStore.getEntityById(ExampleEntity, _id, new DefaultPostQueryOperationsImpl(), true);
   }
 
   @AllowForEveryUser()

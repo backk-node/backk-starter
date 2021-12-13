@@ -10,7 +10,7 @@ import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/Respo
 const dataStore = new MySqlDataStore();
 // const dataStore = new PostgreSqlDataStore();
 // const dataStore = new MongoDbDataStore();
-// const dataStore = new NoOpDataStore();
+// const dataStore = new NullDataStore();
 
 // noinspection JSUnusedLocalSymbols
 class MicroserviceImpl extends Microservice {

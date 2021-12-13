@@ -5,8 +5,8 @@ import microservice from './microservice';
 
 initializeDefaultJaegerTracing();
 
-microservice.initialize(process.argv, [
-  // Enable HTTP server and/or consumer(s)
+microservice.start([
+  // TODO: Enable HTTP server and/or consumer(s)
   new HttpServer(),
   // new KafkaConsumer(),
   // new RedisConsumer()
