@@ -118,12 +118,12 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
    For SwaggerHub:
     1. Navigate to [SwaggerHub](https://app.swaggerhub.com/home)
     2. Choose `Create New` and then `Import and Document API` and then choose file `generated/openapi/openApiPublicSpec.yaml`
-9. Backk automatically generates some integration tests and they can be run with following command:
+9. Backk automatically generates some integration tests, and they can be run with following command:
    ```bash
    # NOTE! You need to have the microservice running before executing the integration tests,
    # so ensure you have run npm run start:dev before running the below command
    
    npm run integrationtest:dev
    ```
-   You can also import the integration test to Postman from file `generated/integrationtests/integrationTestsPostmanCollection.json`
+   You can also import the integration tests to Postman from file `generated/integrationtests/integrationTestsPostmanCollection.json`
 
