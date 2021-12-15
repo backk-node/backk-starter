@@ -102,22 +102,14 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
       "@opentelemetry/plugin-ioredis": "0.11.0",
       "ioredis": "^4.19.2",
       ```
-5. Run
-
-   ```bash
-   npm install
-   npm run start:dev
-
-   # to run unit tests
-   npm test
-   ```
-
-   There is one example service in `src/services/example` directory that you can use as a basis for your own service(s).
-   If/When you don't need that example service anymore, just delete the `src/services/example` directory and remove the example service instantiation also from the `MicroserviceImpl` class in `src/microservice.ts` file.
+5. Run `npm install`
 6. Generate the [OpenAPI 3](https://swagger.io/specification/) API specs for your API implementation with following command:
    ```bash
    npm run generateApiSpecs
    ```
+7. Run `npm start:dev`
+   There is one example service in `src/services/example` directory that you can use as a basis for your own service(s).
+   If/When you don't need that example service anymore, just delete the `src/services/example` directory and remove the example service instantiation also from the `MicroserviceImpl` class in `src/microservice.ts` file.
 8. You can use and test your microservice API using [Postman](https://www.postman.com/downloads/) or [SwaggerHub](https://app.swaggerhub.com/home)  
    For Postman:
     1. Launch Postman
