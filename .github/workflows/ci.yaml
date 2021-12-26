@@ -52,7 +52,7 @@ jobs:
           run-tests: true
 
       - name: Setup integration testing environment
-        run: docker-compose --env-file env.ci up
+        run: docker-compose --env-file .env.ci up --build
 
       - name: Run integration tests
         run: ./runIntegrationTestsInCi.sh
@@ -63,7 +63,7 @@ jobs:
           target: generated/openapi/openApiPublicSpec.yaml
 
       - name: Tear down integration testing environment
-        run: docker-compose down
+        run: docker-compose --env-file .env.ci down -v
 
       - name: Log in to Docker registry
         uses: docker/login-action@v1
@@ -92,7 +92,7 @@ jobs:
           context: .
           push: true
           # TODO: Change the Docker registry namespace
-          tags: <docker-registry-namespace>/backk-example-project:${{ steps.microserviceVersion.outputs.value }}
+          tags: <docker-registry-namespace>/backk-example-microservice:${{ steps.microserviceVersion.outputs.value }}
 
       - name: Extract metadata for building and publish Docker image when in main or maintenance branch
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v*'
@@ -100,7 +100,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           # TODO: Change the Docker registry namespace
-          images: <docker-registry-namespace>/backk-example-project
+          images: <docker-registry-namespace>/backk-example-microservice
 
       - name: Build and push Docker image when in main or maintenance branch
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v*'
@@ -116,7 +116,7 @@ jobs:
         uses: anchore/scan-action@v3
         with:
           # TODO: Change the Docker registry namespace
-          image: <docker-registry-namespace>/backk-example-project:${{ steps.microserviceVersion.outputs.value }}
+          image: <docker-registry-namespace>/backk-example-microservice:${{ steps.microserviceVersion.outputs.value }}
           fail-build: true
           severity-cutoff: high
 
@@ -127,8 +127,8 @@ jobs:
 
       - name: Update helm chart versions
         run: |
-          sed -i /version: .*/version: ${{ steps.microserviceVersion.outputs.value }}/g helm/backk-example-project/Chart.yaml
-          sed -i /appVersion: .*/appVersion: "${{ steps.microserviceVersion.outputs.value }}"/g helm/backk-example-project/Chart.yaml
+          sed -i "/version: .*/version: ${{ steps.microserviceVersion.outputs.value }}/g helm/backk-example-microservice/Chart.yaml"
+          sed -i "/appVersion: .*/appVersion: "${{ steps.microserviceVersion.outputs.value }}"/g helm/backk-example-microservice/Chart.yaml"
 
       - name: Define docker image tag
       - uses: haya14busa/action-cond@v1
@@ -141,10 +141,12 @@ jobs:
       - name: Update Docker image tag in values.yaml
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/v*'
         run: |
-          sed -i /tag: .*/tag: ${{ dockerImageTag }}/g helm/backk-example-project/values.yaml
+          DOCKER_IMAGE_TAG=${{ dockerImageTag }}
+          DOCKER_IMAGE_TAG=${DOCKER_IMAGE_TAG:1}
+          sed -i "/tag: .*/tag: $DOCKER_IMAGE_TAG/g helm/backk-example-microservice/values.yaml"
 
       - name: Lint Helm chart
-        run: helm lint helm/backk-example-project
+        run: helm lint helm/backk-example-microservice
 
       - name: Package and publish Helm chart
         uses: helm/chart-releaser-action@v1
