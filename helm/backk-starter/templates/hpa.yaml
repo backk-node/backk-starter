@@ -1,15 +1,15 @@
-{{- if eq .Values.environmentType "production" }}
+{{- if eq .Values.nodeEnv "production" }}
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "my-microservice.fullname" . }}
+  name: {{ include "backk-example-microservice.fullname" . }}
   labels:
-    {{- include "my-microservice.labels" . | nindent 4 }}
+    {{- include "backk-example-microservice.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "my-microservice.fullname" . }}
+    name: {{ include "backk-example-microservice.fullname" . }}
   minReplicas: {{ .Values.hpa.minReplicas }}
   maxReplicas: {{ .Values.hpa.maxReplicas }}
   metrics:

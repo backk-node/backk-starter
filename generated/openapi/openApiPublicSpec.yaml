@@ -4,7 +4,7 @@ info:
   description: ""
   version: 1.0.0
 servers:
-  - url: http://localhost:3000/backk-starter.default
+  - url: http://localhost:3001/backk-starter.default
     description: Local development server
 components:
   securitySchemes:
@@ -156,6 +156,14 @@ paths:
       summary: livenessCheckService.isMicroserviceAlive
       tags:
         - livenessCheckService
+      responses:
+        "200":
+          description: Successful operation
+  /readinessCheckService.isMicroserviceReady:
+    post:
+      summary: readinessCheckService.isMicroserviceReady
+      tags:
+        - readinessCheckService
       responses:
         "200":
           description: Successful operation
