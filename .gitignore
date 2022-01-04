@@ -101,7 +101,6 @@ dist
 
 .idea/
 build/
-generated/integrationtests/
 generated/docs/
 .husky/VERSION_LEVEL
 .idea/
