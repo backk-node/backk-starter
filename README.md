@@ -108,7 +108,7 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
    ```bash
    npm run generateApiSpecs
    ```
-8. Run `npm start:dev`
+8. Run `npm start:dev`<br/>
    There is one example service in `src/services/example` directory that you can use as a basis for your own service(s).
    If/When you don't need that example service anymore, just delete the `src/services/example` directory and remove the example service instantiation also from the `MicroserviceImpl` class in `src/microservice.ts` file.
 9. You can use and test your microservice API using [Postman](https://www.postman.com/downloads/) or [SwaggerHub](https://app.swaggerhub.com/home)  
