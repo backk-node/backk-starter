@@ -12,7 +12,7 @@ import ReadinessCheckServiceImpl from './services/readinesscheckservice/Readines
 import ResponseCacheConfigServiceImpl from './services/responsecacheconfig/ResponseCacheConfigServiceImpl';
 
 // TODO: Choose your data store here, you can only use one kind of data store,
-//  if you don't need a persistent data store, use NoOpDataStore
+//  if you don't need a persistent data store, use NullDataStore
 const dataStore = new MySqlDataStore();
 // const dataStore = new PostgreSqlDataStore();
 // const dataStore = new MongoDbDataStore();

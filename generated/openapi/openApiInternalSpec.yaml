@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: backk-starter API
   description: ""
-  version: 1.0.0
+  version: 1.0.1
 servers:
   - url: http://localhost:3001/backk-starter.default
     description: Local development server
