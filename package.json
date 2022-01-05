@@ -6,7 +6,7 @@
     "node": ">= 12.19"
   },
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky install && rimraf generated",
     "prebuild": "rimraf build && copyfiles resources/* build",
     "build": "tsc",
     "generateTypes": "node node_modules/backk/lib/typescript/generator/generateTypescriptFilesFromTypeDefinitionFiles.js",

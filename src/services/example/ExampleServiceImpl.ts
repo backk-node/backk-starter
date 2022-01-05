@@ -38,7 +38,7 @@ export default class ExampleServiceImpl extends CrudEntityService implements Exa
 
   @AllowForEveryUser()
   getExampleEntity({ _id }: _Id): PromiseErrorOr<One<ExampleEntity>> {
-    return this.dataStore.getEntityById(ExampleEntity, _id, new DefaultPostQueryOperationsImpl(), true);
+    return this.dataStore.getEntityById(ExampleEntity, _id, new DefaultPostQueryOperationsImpl(), false);
   }
 
   @AllowForEveryUser()
