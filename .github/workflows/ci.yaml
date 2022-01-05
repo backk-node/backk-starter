@@ -128,14 +128,14 @@ jobs:
           push: true
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache
-          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-example-microservice:${{ steps.setBuildVersion.outputs.value }}
+          tags: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-starter:${{ steps.setBuildVersion.outputs.value }}
 
       - name: Extract metadata for building and pushing Docker image when in main or maintenance branch
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/patch_v*'
         id: dockerImageMetadata
         uses: docker/metadata-action@v3
         with:
-          images: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-example-microservice
+          images: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-starter
           tags: |
             type=semver,pattern={{version}},value=${{ steps.setBuildVersion.outputs.value }}
 
@@ -156,7 +156,7 @@ jobs:
         id: anchoreScan
         uses: anchore/scan-action@v3
         with:
-          image: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-example-microservice:latest
+          image: ${{ secrets.DOCKER_REGISTRY_USERNAME }}/backk-starter:latest
           fail-build: false
           severity-cutoff: high
 
@@ -188,8 +188,8 @@ jobs:
 
       - name: Update Helm chart versions in Chart.yaml
         run: |
-          sed -i "s/^version:.*/version: ${{ steps.setMicroserviceVersion.outputs.value }}/g" helm/backk-example-microservice/Chart.yaml
-          sed -i "s/^appVersion:.*/appVersion: ${{ steps.setMicroserviceVersion.outputs.value }}/g" helm/backk-example-microservice/Chart.yaml
+          sed -i "s/^version:.*/version: ${{ steps.setMicroserviceVersion.outputs.value }}/g" helm/backk-starter/Chart.yaml
+          sed -i "s/^appVersion:.*/appVersion: ${{ steps.setMicroserviceVersion.outputs.value }}/g" helm/backk-starter/Chart.yaml
 
       - name: Define docker image tag
         uses: haya14busa/action-cond@v1
@@ -201,10 +201,10 @@ jobs:
 
       - name: Update Docker image tag in values.yaml
         run: |
-          sed -i "s/^imageTag:.*/imageTag: ${{ steps.defineDockerImageTag.outputs.value }}/g" helm/backk-example-microservice/values.yaml
+          sed -i "s/^imageTag:.*/imageTag: ${{ steps.defineDockerImageTag.outputs.value }}/g" helm/backk-starter/values.yaml
 
       - name: Lint Helm chart
-        run: helm lint -f helm/values/values-minikube.yaml helm/backk-example-microservice
+        run: helm lint -f helm/values/values-minikube.yaml helm/backk-starter
 
       - name: Configure Git user
         run: |

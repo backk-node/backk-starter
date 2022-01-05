@@ -1,6 +1,6 @@
-imageRegistry: docker.io
-imageRepository: pksilen2/backk-example-microservice
-imageTag: pksilen-main
+imageRegistry:
+imageRepository:
+imageTag:
 nodeEnv: integration
 apiGatewayFqdn: localhost
 observability:
