@@ -225,10 +225,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExampleEntity"
+                type: object
+                properties:
+                  metadata: {}
+                  data:
+                    $ref: "#/components/schemas/ExampleEntity"
               example:
-                _id: "{{exampleId}}"
-                exampleProperty: abc
+                metadata: {}
+                data:
+                  _id: "{{exampleId}}"
+                  exampleProperty: abc
         "400":
           description: "error.5: Invalid argument: "
           content:
@@ -331,12 +337,18 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: "#/components/schemas/ExampleEntity"
+                type: object
+                properties:
+                  metadata: {}
+                  data:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/ExampleEntity"
               example:
-                _id: "{{exampleId}}"
-                exampleProperty: abc
+                metadata: {}
+                data:
+                  - _id: "{{exampleId}}"
+                    exampleProperty: abc
         "400":
           description: "error.5: Invalid argument: "
           content:
@@ -411,10 +423,16 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ExampleEntity"
+                type: object
+                properties:
+                  metadata: {}
+                  data:
+                    $ref: "#/components/schemas/ExampleEntity"
               example:
-                _id: "{{exampleId}}"
-                exampleProperty: abc
+                metadata: {}
+                data:
+                  _id: "{{exampleId}}"
+                  exampleProperty: abc
         "400":
           description: "error.5: Invalid argument: "
           content:

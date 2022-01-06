@@ -18,35 +18,35 @@ export default class ExampleServiceImpl extends CrudEntityService implements Exa
     super(exampleServiceErrors, dataStore);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   deleteAllExampleEntities(): PromiseErrorOr<null> {
     return this.dataStore.deleteAllEntities(ExampleEntity);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   @NoCaptcha('Not public interface')
   createExampleEntity(exampleEntity: ExampleEntity): PromiseErrorOr<One<ExampleEntity>> {
     return this.dataStore.createEntity(ExampleEntity, exampleEntity);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   getExampleEntities(
     postQueryOperations: DefaultPostQueryOperationsImpl
   ): PromiseErrorOr<Many<ExampleEntity>> {
     return this.dataStore.getAllEntities(ExampleEntity, postQueryOperations, false);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   getExampleEntity({ _id }: _Id): PromiseErrorOr<One<ExampleEntity>> {
     return this.dataStore.getEntityById(ExampleEntity, _id, new DefaultPostQueryOperationsImpl(), false);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   updateExampleEntity(exampleEntity: ExampleEntity): PromiseErrorOr<null> {
     return this.dataStore.updateEntity(ExampleEntity, exampleEntity);
   }
 
-  @AllowForEveryUser()
+  @AllowForEveryUser(false)
   deleteExampleEntity({ _id }: _Id): PromiseErrorOr<null> {
     return this.dataStore.deleteEntityById(ExampleEntity, _id);
   }
