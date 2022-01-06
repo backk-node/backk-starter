@@ -36,7 +36,7 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
    cd <your-microservice-name>
    ```
 
-2. Complete all the 3 TODOs in `src/main.ts` and `src/microservice.ts` files
+2. Complete all the TODOs in the project (Find all TODOs using your IDE)
 3. Check that the environment variable values in the `.env.dev` file are correct for your development environment
     - If you are using MongoDB, check
         - `MONGODB_HOST`
@@ -127,4 +127,14 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
     npm run integrationtest:dev
     ```
     You can also import the integration tests to Postman from file `generated/integrationtests/integrationTestsPostmanCollection.json`
-
+11. Remove the `.git` directory (e.g. `rm -rf .git`)
+12. Create a git repo (e.g. in Github)
+13. Initialize and push to new repo:
+    ```bash
+    git init
+    git add .
+    git commit -m "First commit"
+    git branch -M main
+    git remote add origin git@github.com:<organization>/<your-microservice-name>.git
+    git push -u origin main
+    ```
