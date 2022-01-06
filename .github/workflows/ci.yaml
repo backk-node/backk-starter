@@ -74,11 +74,13 @@ jobs:
         uses: sonarsource/sonarcloud-github-action@v1.6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # TODO: In your Github repo in Settings > Secrets, set SONAR_TOKEN secret
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: Legal and compliance analysis with FOSSA
         uses: fossas/fossa-action@v1
         with:
+          # TODO: In your Github repo in Settings > Secrets, set FOSSA_API_KEY secret
           api-key: ${{ secrets.FOSSA_API_KEY }}
           run-tests: false
 
@@ -86,7 +88,9 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: docker.io
+          # TODO: In your Github repo in Settings > Secrets, set DOCKER_REGISTRY_USERNAME secret
           username: ${{ secrets.DOCKER_REGISTRY_USERNAME }}
+          # TODO: In your Github repo in Settings > Secrets, set DOCKER_REGISTRY_PASSWORD secret
           password: ${{ secrets.DOCKER_REGISTRY_PASSWORD }}
 
       - name: Extract latest Git tag
