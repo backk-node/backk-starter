@@ -36,9 +36,9 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
    cd <your-microservice-name>
    ```
 
-2. Complete all the TODOs in the project (Find all TODOs using your IDE)
-3. Check that the environment variable values in the `.env.dev` and `.env.ci` file are correct for your development environment
-    - If you are using MongoDB, check
+2. Complete all the TODOs in the project (Find all TODOs using your IDE, e.g. TODO tab in Webstorm)
+3. Check that the environment variable values in the `.env.dev` and `.env.ci` file are correct for your development environment. In most cases, you don't need to change the environment variables. But if you don't have default localhost database instance with default port, please check database related environment variables:
+   - If you are using MongoDB, check
         - `MONGODB_HOST`
         - `MONGODB_PORT`
         - `MONGODB_USER`
