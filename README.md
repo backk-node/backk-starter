@@ -129,7 +129,7 @@ Follow the below steps: (In the future, there will be [backk-cli](https://github
     You can also import the integration tests to Postman from file `generated/integrationtests/integrationTestsPostmanCollection.json`
 11. Remove the `.git` directory (e.g. `rm -rf .git`)
 12. Create a git repo (e.g. in Github)
-13. Initialize and push to new repo:
+13. Initialize and push to new repo (Github in this example):
     ```bash
     git init
     git add .
