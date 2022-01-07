@@ -1,6 +1,6 @@
-imageRegistry:
-imageRepository:
-imageTag:
+imageRegistry: docker.io
+imageRepository: <your-repository-namespace>/backk-starter
+imageTag: pksilen-main
 nodeEnv: integration
 apiGatewayFqdn: localhost
 observability:

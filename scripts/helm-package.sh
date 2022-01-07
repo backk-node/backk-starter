@@ -1,1 +1,1 @@
-helm package helm/"$MICROSERVICE_NAME" -d helm
+helm package helm/$MICROSERVICE_NAME --dependency-update --destination helm
