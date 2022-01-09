@@ -22,7 +22,8 @@
 
 ### <a name="development-environment"></a> Development Environment
 
-Follow the below steps: (In the future, there will be [backk-cli](https://github.com/backk-node/backk-cli) available, which can be used to generate a Backk project based on a set of questions)
+Follow the below steps: (In the future, there will be [backk-cli](https://github.com/backk-node/backk-cli) available, which can be used to generate a Backk project based on a set of questions).
+In Windows, you should use Git Bash as shell.
 
 1. Clone [Backk starter](https://github.com/backk-node/backk-starter) project to a directory named after your microservice and then cd into that directory
 
