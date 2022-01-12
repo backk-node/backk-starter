@@ -1,4 +1,6 @@
- # backk-starter
+# backk-starter
+
+This is a starter project for your own Backk microservice
 
 ## Prerequisites
 
