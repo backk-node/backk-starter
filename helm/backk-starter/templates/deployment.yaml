@@ -153,14 +153,14 @@ spec:
             httpGet:
               path: /livenessCheckService.isMicroserviceAlive
               port: http
-            failureThreshold: 4
+            failureThreshold: 3
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /readinessCheckService.isMicroserviceReady
               port: http
-            failureThreshold: 2
-            periodSeconds: 10
+            failureThreshold: 3
+            periodSeconds: 5
           startupProbe:
             httpGet:
               path: /startupCheckService.isMicroserviceStarted
