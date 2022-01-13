@@ -153,13 +153,13 @@ spec:
             httpGet:
               path: /livenessCheckService.isMicroserviceAlive
               port: http
-            failureThreshold: 3
+            failureThreshold: 4
             periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /readinessCheckService.isMicroserviceReady
               port: http
-            failureThreshold: 3
+            failureThreshold: 2
             periodSeconds: 10
           startupProbe:
             httpGet:
@@ -188,6 +188,12 @@ spec:
       {{- end }}
       {{- with .Values.deployment.pod.affinity }}
       affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  app.kubernetes.io/name: {{ include "microservice.name" . }}
+              topologyKey: "kubernetes.io/hostname"
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- with .Values.deployment.pod.tolerations }}

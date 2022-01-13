@@ -39,6 +39,7 @@ helm.sh/chart: {{ include "microservice.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
+app.kubernetes.io/component: api
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 

@@ -160,6 +160,7 @@ deployment:
     container:
       imagePullPolicy: Always
       securityContext:
+        privileged: false
         capabilities:
           drop:
             - ALL
@@ -179,21 +180,21 @@ deployment:
             memory: 768Mi
           requests:
             cpu: '1'
-            memory: 384Mi
+            memory: 768Mi
         integration:
           limits:
             cpu: '1'
             memory: 768Mi
           requests:
             cpu: '1'
-            memory: 384Mi
+            memory: 768Mi
         production:
           limits:
             cpu: 1
             memory: 768Mi
           requests:
             cpu: 1
-            memory: 384Mi
+            memory: 768Mi
     nodeSelector: {}
     tolerations: []
     affinity: {}
