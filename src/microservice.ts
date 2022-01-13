@@ -25,7 +25,7 @@ class MicroserviceImpl extends Microservice {
   private readonly captchaVerificationService = new CaptchaVerificationServiceImpl();
   private readonly livenessCheckService = new LivenessCheckServiceImpl(dataStore);
   private readonly responseCacheConfigService = new ResponseCacheConfigServiceImpl();
-  private readonly readinessCheckService = new ReadinessCheckServiceImpl();
+  private readonly readinessCheckService = new ReadinessCheckServiceImpl(this);
   private readonly startupCheckService = new DefaultStartupCheckServiceImpl(dataStore);
 
   // TODO: Create your service(s) classes under services directory and instantiate them here
