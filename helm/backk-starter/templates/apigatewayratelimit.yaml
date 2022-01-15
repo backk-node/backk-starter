@@ -7,6 +7,6 @@ spec:
   domain: ambassador
   limits:
     - pattern: [{remote_address: "*"}]
-      rate: 10
+      rate: 120
       unit: minute
 {{- end }}
