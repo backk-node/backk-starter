@@ -108,7 +108,7 @@ components:
         fieldName:
           type: string
           minLength: 1
-          maxLength: .nan
+          maxLength: 512
           pattern: ^[a-zA-Z_][a-zA-Z0-9_.]*$
         sortDirection:
           type: string
@@ -332,6 +332,9 @@ paths:
                   fieldName: id
                   sortDirection: ASC
               paginations:
+                - subEntityPath: ""
+                  pageNumber: 1
+                  pageSize: 50
                 - subEntityPath: "*"
                   pageNumber: 1
                   pageSize: 50
